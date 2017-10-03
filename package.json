@@ -26,8 +26,5 @@
   "author": {
     "name": "Luis Nunez",
     "email": "lnp.fox@gmail.com"
-  },
-  "devDependencies": {
-    "uglify": "^0.1.5"
   }
 }
