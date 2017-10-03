@@ -1,0 +1,110 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: API Node 2.0
+  description: Api desarrollada bajo NodeJs
+  termsOfService: http://www.grupointellego.com
+  contact:
+    name: API Support
+    url: http://www.grupointellego.com
+    email: luis.nunez@grupointellego.com
+host: localhost:8080
+basePath: /
+schemes:
+  - http
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json 
+paths:
+  /v1/User/List:
+    get:
+      description: Retorna la lista de usuarios
+      operationId: getUser
+      security:
+        - basicAuth: []
+      responses:
+        "200":
+          description: correct payload
+        "500":
+          description: error payload
+  /v1/User/UserById:
+    get:
+      description: Retorna los usuarios filtrados por idToken
+      operationId: getUserById
+      security:
+        - basicAuth: []
+      responses:
+        "200":
+          description: correct payload
+        "500":
+          description: error payload
+    parameters:
+      - name: id
+        in: query
+        type: string
+  /v1/User/Create:
+    post:
+      description: Crea un usuario de sistema
+      operationId: postCreateUser
+      security:
+        - basicAuth: []
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: correct payload
+        "500":
+          description: error payload
+    parameters:
+      - name: json-data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/User'
+  /v1/Account/Login:
+    post:
+      description: Retorna el JWT de autenticacion
+      operationId: postAuthenticate
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: correct payload
+        "500":
+          description: error payload
+    parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Login'
+  /swagger:
+    x-swagger-pipe: swagger_raw
+definitions:
+  Login:
+    type: object
+    properties:
+      user:
+        type: string
+      password:
+        type: string
+  User:
+    type: object
+    properties:
+      name:
+        type: string
+      lastname:
+        type: string
+      username:
+        type: string
+      password:
+        type: string
+      mail:
+        type: string
+securityDefinitions:
+  basicAuth:
+    type: apiKey
+    in: header
+    name: authorization
