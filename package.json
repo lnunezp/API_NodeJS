@@ -1,6 +1,6 @@
 {
-  "name": "API_Node",
-  "version": "0.0.0",
+  "name": "api-node",
+  "version": "v1.0.0",
   "description": "Primera Aplicacion API Node",
   "main": "server.js",
   "dependencies": {
@@ -21,10 +21,16 @@
     "yamljs": "^0.3.0"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "npm run clean:dist && ng build",
+    "build:prod": "npm run build -- --prod",
+    "build:prod:aot": "npm run build:prod -- --aot",
+    "build:ci": "npm run build:prod && npm run build:prod:aot",
+    "clean:dist": "npm run rimraf -- dist"
   },
   "author": {
     "name": "Luis Nunez",
     "email": "lnp.fox@gmail.com"
-  }
+  },
+  "devDependencies": {}
 }
